@@ -1,0 +1,15 @@
+{
+  "name": "test.Job",
+  "type": "record",
+  "fields": [
+    {
+      "name": "id",
+      "type": "int"
+    },
+    {
+      "name": "job",
+      "type": "string"
+    }
+  ],
+  "doc": "Job table backup."
+}

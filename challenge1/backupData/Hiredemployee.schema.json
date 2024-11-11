@@ -1,0 +1,27 @@
+{
+  "name": "test.Hiredemployee",
+  "type": "record",
+  "fields": [
+    {
+      "name": "id",
+      "type": "int"
+    },
+    {
+      "name": "name",
+      "type": "string"
+    },
+    {
+      "name": "datetime",
+      "type": "long"
+    },
+    {
+      "name": "department",
+      "type": "int"
+    },
+    {
+      "name": "job",
+      "type": "int"
+    }
+  ],
+  "doc": "Hiredemployee table backup."
+}
