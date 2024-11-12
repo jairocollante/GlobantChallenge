@@ -127,19 +127,19 @@ Requirements:
 1. Number of employees hired for each job and department in 2021 divided by quarter. The table must be ordered alphabetically by department and job.
     
     Solution.
-        #SELECT d.department,j.job,count(*),h.datetime,
-        #CASE 
-        #    WHEN CAST(SUBSTR(datetime, 6, 2) AS INTEGER) BETWEEN 1 AND 3 THEN 'Q1'
-        #    WHEN CAST(SUBSTR(datetime, 6, 2) AS INTEGER) BETWEEN 4 AND 6 THEN 'Q2'
-        #    WHEN CAST(SUBSTR(datetime, 6, 2) AS INTEGER) BETWEEN 7 AND 9 THEN 'Q3'
-        #    WHEN CAST(SUBSTR(datetime, 6, 2) AS INTEGER) BETWEEN 10 AND 12 THEN 'Q4'
-        #END AS 'quarter'
-        #FROM challenge1_hiredemployee h, challenge1_department d, challenge1_job j
-        #WHERE h.department_id = d.id
-        #AND h.job_id = j.id
-        #AND substr(h.datetime,0,5) = '2021'
-        #GROUP BY d.department,j.job
-        #ORDER BY d.department,j.job DESC;
+        *   SELECT d.department,j.job,count(*),h.datetime,
+            CASE 
+                WHEN CAST(SUBSTR(datetime, 6, 2) AS INTEGER) BETWEEN 1 AND 3 THEN 'Q1'
+                WHEN CAST(SUBSTR(datetime, 6, 2) AS INTEGER) BETWEEN 4 AND 6 THEN 'Q2'
+                WHEN CAST(SUBSTR(datetime, 6, 2) AS INTEGER) BETWEEN 7 AND 9 THEN 'Q3'
+                WHEN CAST(SUBSTR(datetime, 6, 2) AS INTEGER) BETWEEN 10 AND 12 THEN 'Q4'
+            END AS 'quarter'
+            FROM challenge1_hiredemployee h, challenge1_department d, challenge1_job j
+            WHERE h.department_id = d.id
+            AND h.job_id = j.id
+            AND substr(h.datetime,0,5) = '2021'
+            GROUP BY d.department,j.job
+            ORDER BY d.department,j.job DESC;
 
 
 2. List of ids, name and number of employees hired of each department that hired more
@@ -147,19 +147,19 @@ employees than the mean of employees hired in 2021 for all the departments, orde
 by the number of employees hired (descending).
 
     Solution.
-        #SELECT h.department_id, d.department, count(h.id)
-        #FROM challenge1_hiredemployee h, challenge1_department d
-        #WHERE h.department_id = d.id 
-        #AND substr(h.datetime,0,5) = '2021'
-        #GROUP BY h.department_id
-        #HAVING count(h.id) > (
-        #        SELECT AVG( department_count )
-        #        FROM (
-        #            SELECT count(h.id) AS department_count
-        #            FROM challenge1_hiredemployee h
-        #            WHERE substr(h.datetime,0,5) = '2021'
-        #            GROUP BY h.department_id ) )
-        #ORDER BY count(h.id) DESC
+        *   SELECT h.department_id, d.department, count(h.id)
+            FROM challenge1_hiredemployee h, challenge1_department d
+            WHERE h.department_id = d.id 
+            AND substr(h.datetime,0,5) = '2021'
+            GROUP BY h.department_id
+            HAVING count(h.id) > (
+                    SELECT AVG( department_count )
+                    FROM (
+                        SELECT count(h.id) AS department_count
+                        FROM challenge1_hiredemployee h
+                        WHERE substr(h.datetime,0,5) = '2021'
+                        GROUP BY h.department_id ) )
+            ORDER BY count(h.id) DESC
 
 
 
