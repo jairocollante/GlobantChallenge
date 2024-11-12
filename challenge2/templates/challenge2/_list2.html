@@ -1,0 +1,47 @@
+<style>
+	table, th, td {
+		border: 1px solid black;
+		border-radius: 10px;
+		border-style: dotted;
+		padding: 5px;
+		}
+</style>
+
+<h3>Challenge #2</h3>
+<p> 
+List of ids, name and number of employees hired of each department that hired more
+employees than the mean of employees hired in 2021 for all the departments, ordered
+by the number of employees hired (descending).
+</p>
+
+<ul> 
+	<table id="dataTable" width="50%" cellspacing="10">
+		<thead>
+			<tr>		    
+				<th>Id </th>
+				<th>Nombre </th>
+				<th>Contratados </th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for object in rows %} 
+			<tr>
+				<td>
+					{{ object.department_id }}
+				</td>
+				<td>
+					{{ object.department }}
+				</td>
+				<td>
+					{{ object.hired }}
+				</td>
+			</tr>
+			{% endfor %} 
+
+		</tbody>
+
+	</table>
+	<hr/> 
+
+	
+</ul>
