@@ -127,6 +127,8 @@ Requirements:
 1. Number of employees hired for each job and department in 2021 divided by quarter. The table must be ordered alphabetically by department and job.
     
     Solution.
+        * http://localhost:8000/challenge2/employees_quarter/
+
         *   SELECT d.department,j.job,count(*),h.datetime,  
             CASE    
                 WHEN CAST(SUBSTR(datetime, 6, 2) AS INTEGER) BETWEEN 1 AND 3 THEN 'Q1'  
@@ -147,6 +149,8 @@ employees than the mean of employees hired in 2021 for all the departments, orde
 by the number of employees hired (descending).
 
     Solution.
+        *   http://localhost:8000/challenge2/employees_hired/
+        
         *   SELECT h.department_id, d.department, count(h.id)   
             FROM challenge1_hiredemployee h, challenge1_department d  
             WHERE h.department_id = d.id        

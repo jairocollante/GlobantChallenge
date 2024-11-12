@@ -1,6 +1,8 @@
-from rest_framework import status
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
+from django.http import HttpResponseRedirect
+from django.shortcuts import get_object_or_404, render
+from django.urls import reverse, reverse_lazy
+from django.views import generic
+
 
 from django.db import connection
 
@@ -14,7 +16,8 @@ def dictfetchall(cursor):
     columns = [col[0] for col in cursor.description]
     return [dict(zip(columns, row)) for row in cursor.fetchall()]
 
-@api_view(['GET'])
+
+
 def employees_quarter(request):
     query = "SELECT d.department,j.job,count(*) AS employees,\
                 CASE \
@@ -37,10 +40,12 @@ def employees_quarter(request):
 
     print(rows)
 
-    return Response(rows, status=status.HTTP_201_CREATED)
+    data = {'rows':rows}
+
+    return render(request,'challenge2/_list.html',data);
 
 
-@api_view(['GET'])
+
 def employees_hired(request):
 
     query = "SELECT h.department_id, d.department, count(h.id) AS hired \
@@ -63,4 +68,6 @@ def employees_hired(request):
 
     print(rows)
 
-    return Response(rows, status=status.HTTP_201_CREATED)
+    data = {'rows':rows}
+
+    return render(request,'challenge2/_list2.html',data);
