@@ -1,0 +1,53 @@
+
+
+<style>
+	table, th, td {
+		border: 1px solid black;
+		border-radius: 10px;
+		border-style: dotted;
+		padding: 5px;
+		}
+</style>
+
+<h3>Challenge #2</h3>
+<p> 
+    Number of employees hired for each job and department in 2021 divided by quarter. The
+    table must be ordered alphabetically by department and job.
+    
+</p>
+
+<ul> 
+	<table id="dataTable" width="70%" cellspacing="10">
+		<thead>
+			<tr>		    
+				<th>Department </th>
+				<th>Job </th>
+				<th>Hired </th>
+                <th>Quarter </th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for object in rows %} 
+			<tr>
+				<td>
+					{{ object.department }}
+				</td>
+				<td>
+					{{ object.job }}
+				</td>
+				<td>
+					{{ object.employees }}
+				</td>
+                <td>
+					{{ object.quarter }}
+				</td>
+			</tr>
+			{% endfor %} 
+
+		</tbody>
+
+	</table>
+	<hr/> 
+
+	
+</ul>
